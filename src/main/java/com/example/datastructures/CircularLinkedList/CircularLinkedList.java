@@ -1,6 +1,6 @@
 package com.example.datastructures.CircularLinkedList;
 
-public class CircularLinkedList <T> implements CircularList<T>{
+public class CircularLinkedList <T> implements CircularList<T> {
 
 	private Node<T> head;
 	private Node<T> tail;
@@ -15,7 +15,7 @@ public class CircularLinkedList <T> implements CircularList<T>{
 	}
 
 
-	public void addFirst(T data) {
+	public void addFirst (T data) {
 		Node<T> newNode = new Node();
 		newNode.setData(data);
 
@@ -59,7 +59,8 @@ public class CircularLinkedList <T> implements CircularList<T>{
 			}
 		}
 	}
-	public void addAfterIndex(T value, int index) {
+
+	public void addAfterIndex (T value, int index) {
 
 		if (this.head == null) {
 			this.head = new Node<T>();
