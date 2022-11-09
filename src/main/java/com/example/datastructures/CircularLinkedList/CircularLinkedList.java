@@ -4,6 +4,7 @@ public class CircularLinkedList <T> implements CircularList<T> {
 
 	private Node<T> head;
 	private Node<T> tail;
+	private int size = 0;
 
 	public CircularLinkedList () {
 		head = null;
@@ -24,6 +25,7 @@ public class CircularLinkedList <T> implements CircularList<T> {
 		}
 		newNode.next = head;
 		head = newNode;
+		size ++;
 	}
 
 	public void addLast (T data) {
@@ -36,6 +38,7 @@ public class CircularLinkedList <T> implements CircularList<T> {
 			tail.next = newNode;
 			tail = newNode;
 		}
+		size++;
 	}
 
 	public void delete (T value) {
@@ -51,6 +54,7 @@ public class CircularLinkedList <T> implements CircularList<T> {
 						currentNode.getNext().setPrevious(previousNode);
 					}
 					System.out.println("Deleted node with value of: " + value);
+					size--;
 					break;
 				} else {
 					previousNode = currentNode;
@@ -91,6 +95,7 @@ public class CircularLinkedList <T> implements CircularList<T> {
 				}
 
 				currentNode.setNext(newNode);
+				size++;
 			}
 		}
 	}
@@ -116,7 +121,7 @@ public class CircularLinkedList <T> implements CircularList<T> {
 			}
 
 			previousNode.setNext(currentNode.getNext());
-
+			size--;
 			if (currentNode.getNext() != null) {
 				currentNode.getNext().setPrevious(previousNode);
 			}
@@ -131,16 +136,33 @@ public class CircularLinkedList <T> implements CircularList<T> {
 		}
 
 		head = head.next;
-
+		size--;
 	}
+	public Node<T> removeFromEnd() {
+		if (isEmpty()) {
+			return null;
+		}
 
+		Node<T> removedNode = tail;
+
+		if (tail.getPrevious() == null) {
+			head = null;
+		} else {
+			tail.getPrevious().setNext(null);
+		}
+
+		tail = tail.getPrevious();
+		size--;
+		removedNode.setPrevious(null);
+		return removedNode;
+	}
 
 	public void traverse () {
 		if (this.head != null) {
 			Node<T> currentNode = this.head;
 			System.out.print("Start: ");
 			while (currentNode != null) {
-				System.out.print(currentNode.getData() + "->");
+				System.out.print(currentNode.getData() + "<-->");
 				if (currentNode.getNext() == this.head) {
 					break;
 				}
@@ -152,4 +174,7 @@ public class CircularLinkedList <T> implements CircularList<T> {
 		}
 	}
 
+	public void size() {
+		System.out.println(size);
+	}
 }

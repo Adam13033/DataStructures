@@ -15,4 +15,6 @@ public interface CircularList<T> {
 
 	void traverse();
 
+	void size();
+
 }
