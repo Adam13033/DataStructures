@@ -1,6 +1,6 @@
 package com.example.datastructures.CircularLinkedList;
 
-public class CircularLinkedList <T> implements CircularList<T> {
+public class CircularLinkedList<T> implements CircularList<T> {
 
 	private Node<T> head;
 	private Node<T> tail;
