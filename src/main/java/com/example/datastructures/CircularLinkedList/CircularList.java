@@ -17,4 +17,6 @@ public interface CircularList<T> {
 
 	void size();
 
+	Node<T> removeFromEnd();
+
 }

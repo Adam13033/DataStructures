@@ -15,7 +15,7 @@ public class CircularLinkedList <T> implements CircularList<T> {
 		return head == null;
 	}
 
-
+	@Override
 	public void addFirst (T data) {
 		Node<T> newNode = new Node();
 		newNode.setData(data);
@@ -28,6 +28,7 @@ public class CircularLinkedList <T> implements CircularList<T> {
 		size ++;
 	}
 
+	@Override
 	public void addLast (T data) {
 		Node<T> newNode = new Node();
 		newNode.setData(data);
@@ -41,6 +42,7 @@ public class CircularLinkedList <T> implements CircularList<T> {
 		size++;
 	}
 
+	@Override
 	public void delete (T value) {
 		if (this.head != null) {
 			Node<T> currentNode = this.head;
@@ -64,6 +66,7 @@ public class CircularLinkedList <T> implements CircularList<T> {
 		}
 	}
 
+	@Override
 	public void addAfterIndex (T value, int index) {
 
 		if (this.head == null) {
@@ -100,6 +103,7 @@ public class CircularLinkedList <T> implements CircularList<T> {
 		}
 	}
 
+	@Override
 	public void deleteAtIndex (int index) {
 
 		if (this.head != null) {
@@ -128,6 +132,7 @@ public class CircularLinkedList <T> implements CircularList<T> {
 		}
 	}
 
+	@Override
 	public void deleteFirst () {
 		T temp = head.data;
 
@@ -138,6 +143,8 @@ public class CircularLinkedList <T> implements CircularList<T> {
 		head = head.next;
 		size--;
 	}
+
+	@Override
 	public Node<T> removeFromEnd() {
 		if (isEmpty()) {
 			return null;
@@ -157,6 +164,7 @@ public class CircularLinkedList <T> implements CircularList<T> {
 		return removedNode;
 	}
 
+	@Override
 	public void traverse () {
 		if (this.head != null) {
 			Node<T> currentNode = this.head;
@@ -174,6 +182,7 @@ public class CircularLinkedList <T> implements CircularList<T> {
 		}
 	}
 
+	@Override
 	public void size() {
 		System.out.println(size);
 	}
