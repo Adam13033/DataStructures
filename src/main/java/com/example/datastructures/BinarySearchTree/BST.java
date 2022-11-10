@@ -37,7 +37,6 @@ public class BST {
 			subtreeRoot.setRightChild(delete(subtreeRoot.getRightChild(), value));
 		}
 		else {
-			// Cases 1 and 2: node to delete has 0 or 1 child(ren)
 			if (subtreeRoot.getLeftChild() == null) {
 				return subtreeRoot.getRightChild();
 			}

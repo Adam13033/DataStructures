@@ -1,72 +1,46 @@
 package com.example.datastructures.DoublyLinkedList;
 
-public class DoublyLinkedList {
+public class DoublyLinkedList<T> {
 
-	private Node firstNode;
-	private Node lastNode;
+	private Node<T> head;
+	private Node<T> tail;
+	private int size;
 
-	public DoublyLinkedList() {
-		this.firstNode = null;
-		this.lastNode = null;
-	}
 
 	public boolean isEmpty() {
-		return firstNode == null;
+		return head == null;
 	}
 
-	public void insertFirstNode(int data) {
-		Node newNode = new Node();
-		newNode.data = data;
+	public void addToFront(T data) {
+		Node<T> node = new Node<>(data);
+		node.setNext(head);
 
-		if(isEmpty()) {
-			lastNode = newNode;
+		if(head == null) {
+			tail = node;
 		} else {
-			firstNode.previous = newNode;
+			head.setPrevious(node);
 		}
 
-		newNode.next = firstNode;
-		this.firstNode = newNode;
+		head = node;
+		size++;
 	}
 
-	public void insertLastNode(int data) {
-		Node newNode = new Node();
-		newNode.data = data;
+	public void addToEnd(T data) {
+		Node<T> node = new Node<>(data);
 
-		if(isEmpty()) {
-			firstNode = newNode;
+		if(tail == null) {
+			head = node;
 		} else {
-			lastNode.next = newNode;
-			newNode.previous = lastNode;
+			tail.setNext(node);
+			node.setPrevious(tail);
 		}
-		lastNode = newNode;
+
+		tail = node;
+		size++;
 	}
 
-	public Node deleteFirst() {
-		Node temp = firstNode;
-
-		if(firstNode.next == null) {
-			lastNode = null;
-		} else {
-			firstNode.next.previous = null; // node before last is now null
-		}
-		firstNode = firstNode.previous; // restructures, since node has been deleted makes the node following first.
-		return temp;
-	}
-
-	public Node deleteLast() {
-		Node temp = lastNode;
-
-		if(firstNode.next == null) {
-			firstNode = null;
-		} else {
-			lastNode.previous.next = null;
-		}
-		lastNode = lastNode.previous;
-		return temp;
-	}
-
-	public boolean insertAfter(int key, int data) {
-		Node currentNode = firstNode;
+	public boolean insertAfter(T key, T data) {
+		Node<T> currentNode = head;
 
 		while(currentNode.data != key) {
 			currentNode = currentNode.next;
@@ -75,12 +49,11 @@ public class DoublyLinkedList {
 			}
 		}
 
-		Node newNode = new Node();
-		newNode.data = data;
+		Node<T> newNode = new Node<T>(data);
 
-		if(currentNode == lastNode) {
+		if(currentNode == tail) {
 			currentNode.next = null;
-			lastNode = newNode;
+			tail = newNode;
 		} else {
 			newNode.next = currentNode.next;
 			currentNode.next.previous = newNode;
@@ -91,8 +64,28 @@ public class DoublyLinkedList {
 		return true;
 	}
 
-	public Node deleteKey(int key) {
-		Node currentNode = firstNode;
+	public Node<T> deleteFromFront() {
+		if(isEmpty()) {
+			return null;
+		}
+
+		Node<T> removeNode = head;
+
+		if(head.getNext() == null) {
+			tail = null;
+		} else {
+			head.getNext().setPrevious(null);
+		}
+
+		head = head.getNext();
+		size--;
+		removeNode.setNext(null);
+
+		return removeNode;
+	}
+
+	public Node<T> deleteKey(T key) {
+		Node<T> currentNode = head;
 
 		while(currentNode.data != key) {
 			currentNode = currentNode.next;
@@ -100,17 +93,40 @@ public class DoublyLinkedList {
 				return null;
 			}
 		}
-		if(currentNode == firstNode) {
-			firstNode = currentNode.next; // point to the following node as this one will be deleted
+		if(currentNode == head) {
+			head = currentNode.next; // point to the following node as this one will be deleted
 		} else {
 			currentNode.previous.next = currentNode.next;
 		}
 
-		if(currentNode == lastNode) {
-			lastNode = currentNode.previous;
+		if(currentNode == tail) {
+			tail = currentNode.previous;
 		} else {
 			currentNode.next.previous = currentNode.previous;
 		}
 		return currentNode;
+	}
+
+	public int getSize() {
+		if(head == null) {
+			return 0;
+		}
+		return size;
+	}
+
+	public void printList() {
+		Node<T> currentNode = head;
+		System.out.print("Head -> ");
+
+		while (currentNode != null) {
+			System.out.print(currentNode);
+			if(currentNode.getNext() == null) {
+				System.out.print(" --> ");
+			} else {
+				System.out.print(" <--> ");
+			}
+			currentNode = currentNode.getNext();
+		}
+		System.out.println("null");
 	}
 }
