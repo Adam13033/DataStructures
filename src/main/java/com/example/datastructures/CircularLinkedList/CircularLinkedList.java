@@ -25,7 +25,7 @@ public class CircularLinkedList <T> implements CircularList<T> {
 		}
 		newNode.next = head;
 		head = newNode;
-		size ++;
+		size++;
 	}
 
 	@Override
@@ -145,7 +145,7 @@ public class CircularLinkedList <T> implements CircularList<T> {
 	}
 
 	@Override
-	public Node<T> removeFromEnd() {
+	public Node<T> removeFromEnd () {
 		if (isEmpty()) {
 			return null;
 		}
@@ -183,7 +183,7 @@ public class CircularLinkedList <T> implements CircularList<T> {
 	}
 
 	@Override
-	public void size() {
+	public void size () {
 		System.out.println(size);
 	}
 }
