@@ -17,7 +17,7 @@ public class CircularLinkedList<T> implements CircularList<T> {
 
 	@Override
 	public void addFirst (T data) {
-		Node<T> newNode = new Node();
+		Node<T> newNode = new Node<>();
 		newNode.setData(data);
 
 		if (isEmpty()) {
@@ -30,7 +30,7 @@ public class CircularLinkedList<T> implements CircularList<T> {
 
 	@Override
 	public void addLast (T data) {
-		Node<T> newNode = new Node();
+		Node<T> newNode = new Node<>();
 		newNode.setData(data);
 
 		if (isEmpty()) {
